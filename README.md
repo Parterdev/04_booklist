@@ -1,97 +1,262 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## Aplicación móvil BookList - Semana 3
 
-# Getting Started
+Aplicación móvil desarrollada con React Native CLI, TypeScript y Realm DB para registrar libros en una biblioteca personal local.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+- Ingeniería Informática - 7mo "A"
+- Desarrollo de aplicaciones móviles con React Native
+- Desarrollado con React Native CLI + TypeScript
 
-## Step 1: Start Metro
+<p align="left">
+  <img src="documents/booklist_lista_libros_almacenados" alt="Captura de la aplicación BooklList" width="320" />
+</p>
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Descripción
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+La aplicación permite agregar libros con título, autor, año y género; listar los libros guardados; realizar búsquedas en tiempo real por título o autor; y validar los campos del formulario antes de guardar la información.
 
-```sh
-# Using npm
-npm start
+El proyecto fue desarrollado tomando como referencia el documento de la actividad ubicado en la carpeta documents/ del repositorio.
 
-# OR using Yarn
-yarn start
-```
+Aunque la actividad proponía SQLite, en esta implementación se utilizó Realm DB por su rendimiento, compatibilidad directa con React Native CLI y facilidad para trabajar con objetos tipados en TypeScript.
 
-## Step 2: Build and run your app
+También se incluye dentro de la carpeta documents/ el archivo default.realm, extraído del dispositivo emulado, junto con evidencias visuales de su apertura y validación mediante Realm Studio.
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
 
-### Android
+## Funcionalidades
 
-```sh
-# Using npm
-npm run android
+- Pantalla principal con listado de libros.
+- Pantalla para registrar un nuevo libro.
+- Formulario controlado con TypeScript.
+- Validaciones visuales por campo.
+- Persistencia local usando Realm DB.
+- Lectura de libros almacenados localmente.
+- Búsqueda en tiempo real por título o autor.
+- Búsqueda insensible a mayúsculas y minúsculas.
+- Mensaje cuando no existen libros registrados.
+- Mensaje cuando una búsqueda no tiene resultados.
+- Botón flotante para agregar nuevos libros.
+- Tarjetas visuales con colores dinámicos.
+- Verificación de datos mediante Realm Studio.
 
-# OR using Yarn
-yarn android
-```
+## Campos del formulario
 
-### iOS
+- Título.
+- Autor.
+- Año.
+- Género.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## Validaciones implementadas
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+- El título es obligatorio.
+- El autor es obligatorio.
+- El año es obligatorio.
+- El año debe contener solo números.
+- El año debe estar dentro de un rango razonable.
+- El género es obligatorio.
 
-```sh
-bundle install
-```
+## Datos de prueba utilizados para la demostración
 
-Then, and every time you update your native dependencies, run:
+1. Clean Code  
+   Autor: Robert C. Martin  
+   Año: 2008  
+   Género: Programacion  
 
-```sh
-bundle exec pod install
-```
+2. The Pragmatic Programmer  
+   Autor: David Thomas  
+   Año: 1999  
+   Género: Programacion  
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+3. Atomic Habits  
+   Autor: James Clear  
+   Año: 2018  
+   Género: Autoayuda  
 
-```sh
-# Using npm
-npm run ios
+## Resultados esperados
 
-# OR using Yarn
-yarn ios
-```
+- Total de libros registrados: 3.
+- Búsqueda por `clean`: muestra Clean Code.
+- Búsqueda por `james`: muestra Atomic Habits.
+- Búsqueda por `xyz`: muestra mensaje de no encontrados.
+- Los datos persisten al cerrar y volver a abrir la aplicación.
+- Los registros pueden visualizarse desde Realm Studio usando el archivo `default.realm`.
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Evidencia de la base de datos
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+El proyecto incluye evidencia de persistencia local usando Realm DB.
 
-## Step 3: Modify your app
+Archivo incluido:
 
-Now that you have successfully run the app, let's make changes!
+- `documents/default.realm`
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+Este archivo fue obtenido desde el dispositivo emulado y abierto con Realm Studio, donde se verificó la existencia de la clase `Book` y los registros creados desde la aplicación móvil.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+También se agregaron capturas de pantalla dentro de la carpeta `documents/` como evidencia de:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- Lista vacía.
+- Formulario vacío.
+- Formulario con datos.
+- Lista con libros registrados.
+- Búsqueda activa con resultados.
+- Búsqueda sin resultados.
+- Validaciones del formulario.
+- Visualización de datos en Realm Studio.
 
-## Congratulations! :tada:
+## Estructura principal del proyecto
 
-You've successfully run and modified your React Native App. :partying_face:
+- `src/components/AppHeader.tsx`
+- `src/components/AppTextInput.tsx`
+- `src/components/BookCard.tsx`
+- `src/components/EmptyState.tsx`
+- `src/components/FloatingActionButton.tsx`
+- `src/components/SearchBar.tsx`
+- `src/database/bookRepository.ts`
+- `src/database/bookSchema.ts`
+- `src/database/realmConfig.ts`
+- `src/database/realmInstance.ts`
+- `src/navigation/RootNavigator.tsx`
+- `src/navigation/types.ts`
+- `src/screens/AddBookScreen.tsx`
+- `src/screens/ListScreen.tsx`
+- `src/styles/appStyles.ts`
+- `src/types/book.ts`
+- `src/utils/validations.ts`
 
-### Now what?
+## Componentes de React Native utilizados
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+- View
+- Text
+- TextInput
+- TouchableOpacity
+- ScrollView
+- ActivityIndicator
+- Alert
+- StyleSheet
 
-# Troubleshooting
+## Librerias y dependencias utilizadas
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+- React Native CLI
+- TypeScript
+- Realm DB
+- React Navigation
+- Native Stack Navigator
+- React Native Screens
+- React Native Safe Area Context
+- React Native Get Random Values
 
-# Learn More
+## Requerimientos implementados
 
-To learn more about React Native, take a look at the following resources:
+- Interface `Book`.
+- Interface `NewBook`.
+- Interface `BookFormErrors`.
+- Navegación con Stack Navigator.
+- Tipado de pantallas con `NativeStackScreenProps`.
+- Formulario controlado con `useState`.
+- Validaciones separadas en archivo utilitario.
+- Persistencia local con Realm DB.
+- Schema `Book` definido para Realm.
+- Repositorio para separar la lógica de base de datos.
+- Operación de creación de libros.
+- Operación de lectura de libros.
+- Uso de `useFocusEffect` para recargar la lista al volver del formulario.
+- Búsqueda en memoria con `filter()`.
+- Renderizado de tarjetas con `map()`.
+- Manejo de errores con `try/catch/finally`.
+- Estilos centralizados en `appStyles.ts`.
+- Uso de `react-native-safe-area-context`.
+- Uso de `react-native-get-random-values` para compatibilidad con `Realm.BSON.ObjectId`.
+- Sin uso de `any`.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## Modelo de datos
+
+Interface principal:
+
+    export interface Book {
+      id: string;
+      title: string;
+      author: string;
+      year: number;
+      genre: string;
+      createdAt: Date;
+    }
+
+Interface utilizada para el formulario:
+
+    export interface NewBook {
+      title: string;
+      author: string;
+      year: string;
+      genre: string;
+    }
+
+Interface utilizada para errores de validación:
+
+    export interface BookFormErrors {
+      title?: string;
+      author?: string;
+      year?: string;
+      genre?: string;
+    }
+
+## Schema de Realm DB
+
+    import Realm from 'realm';
+
+    export class BookRealm extends Realm.Object<BookRealm> {
+      id!: string;
+      title!: string;
+      author!: string;
+      year!: number;
+      genre!: string;
+      createdAt!: Date;
+
+      static schema: Realm.ObjectSchema = {
+        name: 'Book',
+        primaryKey: 'id',
+        properties: {
+          id: 'string',
+          title: 'string',
+          author: 'string',
+          year: 'int',
+          genre: 'string',
+          createdAt: 'date',
+        },
+      };
+    }
+
+## Instrucciones para ejecutar el proyecto
+
+1. Clonar el repositorio:
+
+        git clone https://github.com/Parterdev/clase_tres_booklist.git
+
+2. Ingresar al proyecto:
+
+        cd clase_tres_booklist
+
+3. Instalar dependencias:
+
+        npm install
+
+4. Ejecutar Metro:
+
+        npm run start
+
+5. Ejecutar en Android:
+
+        npm run android
+
+6. Ejecutar en iOS:
+
+        cd ios
+        pod install
+        cd ..
+        npm run ios
+
+## Nota
+
+El repositorio contiene el código fuente completo de la aplicación, el documento de requerimientos en la carpeta `documents/`, las capturas de pantalla solicitadas, el archivo `default.realm` extraído del dispositivo emulado y la evidencia de validación de datos mediante Realm Studio.
+
+## Autor
+
+Paúl Terán  
+Ingeniería Informática - 7mo "A"
+
