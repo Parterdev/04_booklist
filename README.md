@@ -7,7 +7,7 @@ Aplicación móvil desarrollada con React Native CLI, TypeScript y Realm DB para
 - Desarrollado con React Native CLI + TypeScript
 
 <p align="left">
-  <img src="documents/booklist_lista_libros_almacenados" alt="Captura de la aplicación BooklList" width="320" />
+  <img src="documents/booklist_lista_libros_almacenados.png" alt="Captura de la aplicación BooklList" width="320" />
 </p>
 
 ## Descripción
