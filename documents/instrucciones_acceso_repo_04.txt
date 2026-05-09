@@ -1,0 +1,280 @@
+INSTRUCCIONES DE ACCESO AL REPOSITORIO
+Aplicación móvil BookList - Semana 3
+
+Repositorio GitHub:
+https://github.com/Parterdev/04_booklist
+
+DESCRIPCIÓN DEL PROYECTO
+
+Aplicación móvil desarrollada con React Native CLI, TypeScript y Realm DB para registrar libros en una biblioteca personal local.
+
+La aplicación permite agregar libros con título, autor, año y género, listar los libros guardados, realizar búsquedas en tiempo real por título o autor y validar los campos del formulario antes de guardar la información.
+
+El proyecto fue desarrollado tomando como referencia el documento de la actividad ubicado en la carpeta documents/ del repositorio.
+
+Aunque la actividad proponía SQLite como motor de base de datos local, en esta implementación se utilizó Realm DB por su rendimiento, compatibilidad directa con React Native CLI y facilidad para trabajar con objetos tipados en TypeScript.
+
+Como evidencia adicional, se incluye dentro de la carpeta documents/ el archivo default.realm extraído del dispositivo emulado, junto con capturas de pantalla de la aplicación y evidencia de validación de los datos mediante Realm Studio.
+
+DATOS ACADÉMICOS
+
+Carrera: Ingeniería Informática
+Nivel: 7mo "A"
+Asignatura: Desarrollo de aplicaciones móviles con React Native
+Autor: Paúl Terán
+
+FUNCIONALIDADES PRINCIPALES
+
+- Pantalla principal con listado de libros.
+- Pantalla para registrar un nuevo libro.
+- Formulario controlado con TypeScript.
+- Validaciones visuales por campo.
+- Persistencia local usando Realm DB.
+- Lectura de libros almacenados localmente.
+- Búsqueda en tiempo real por título o autor.
+- Búsqueda insensible a mayúsculas y minúsculas.
+- Mensaje cuando no existen libros registrados.
+- Mensaje cuando una búsqueda no tiene resultados.
+- Botón flotante para agregar nuevos libros.
+- Tarjetas visuales con colores dinámicos.
+- Verificación de datos mediante Realm Studio.
+
+PANTALLAS IMPLEMENTADAS
+
+1. Mi Librería
+   Muestra la lista de libros registrados, el buscador, el contador de libros y el botón flotante para agregar nuevos registros.
+
+2. Nuevo Libro
+   Muestra el formulario para registrar un libro con título, autor, año y género.
+
+CAMPOS DEL FORMULARIO
+
+- Título.
+- Autor.
+- Año.
+- Género.
+
+VALIDACIONES IMPLEMENTADAS
+
+- El título es obligatorio.
+- El autor es obligatorio.
+- El año es obligatorio.
+- El año debe contener solo números.
+- El año debe estar dentro de un rango razonable.
+- El género es obligatorio.
+
+DATOS DE PRUEBA UTILIZADOS
+
+1. Clean Code
+   Autor: Robert C. Martin
+   Año: 2008
+   Género: Programacion
+
+2. The Pragmatic Programmer
+   Autor: David Thomas
+   Año: 1999
+   Género: Programacion
+
+3. Atomic Habits
+   Autor: James Clear
+   Año: 2018
+   Género: Autoayuda
+
+RESULTADOS ESPERADOS CON ESTOS REGISTROS
+
+- Total de libros registrados: 3.
+- Búsqueda por clean: muestra Clean Code.
+- Búsqueda por james: muestra Atomic Habits.
+- Búsqueda por xyz: muestra mensaje de no encontrados.
+- Los datos persisten al cerrar y volver a abrir la aplicación.
+- Los registros pueden visualizarse desde Realm Studio usando el archivo default.realm.
+
+EVIDENCIA DE BASE DE DATOS
+
+El proyecto incluye evidencia de persistencia local usando Realm DB.
+
+Archivo incluido:
+
+- documents/default.realm
+
+Este archivo fue obtenido desde el dispositivo emulado y abierto con Realm Studio, donde se verificó la existencia de la clase Book y los registros creados desde la aplicación móvil.
+
+También se agregaron capturas de pantalla dentro de la carpeta documents/ como evidencia de:
+
+- Lista vacía.
+- Formulario vacío.
+- Formulario con datos.
+- Lista con libros registrados.
+- Búsqueda activa con resultados.
+- Búsqueda sin resultados.
+- Validaciones del formulario.
+- Visualización de datos en Realm Studio.
+
+ESTRUCTURA PRINCIPAL DEL PROYECTO
+
+- App.tsx
+- index.js
+- src/components/AppHeader.tsx
+- src/components/AppTextInput.tsx
+- src/components/BookCard.tsx
+- src/components/EmptyState.tsx
+- src/components/FloatingActionButton.tsx
+- src/components/SearchBar.tsx
+- src/database/bookRepository.ts
+- src/database/bookSchema.ts
+- src/database/realmConfig.ts
+- src/database/realmInstance.ts
+- src/navigation/RootNavigator.tsx
+- src/navigation/types.ts
+- src/screens/AddBookScreen.tsx
+- src/screens/ListScreen.tsx
+- src/styles/appStyles.ts
+- src/types/book.ts
+- src/utils/validations.ts
+
+COMPONENTES UTILIZADOS DE REACT NATIVE
+
+- View
+- Text
+- TextInput
+- TouchableOpacity
+- ScrollView
+- ActivityIndicator
+- Alert
+- StyleSheet
+
+NAVEGACIÓN UTILIZADA
+
+- NavigationContainer
+- createNativeStackNavigator
+- NativeStackScreenProps
+- useFocusEffect
+- navigation.navigate()
+- navigation.goBack()
+
+LIBRERÍAS Y DEPENDENCIAS UTILIZADAS
+
+- React Native CLI
+- TypeScript
+- Realm DB
+- React Navigation
+- Native Stack Navigator
+- react-native-screens
+- react-native-safe-area-context
+- react-native-get-random-values
+- Realm Studio
+
+REQUERIMIENTOS TÉCNICOS CUMPLIDOS
+
+- Interface Book.
+- Interface NewBook.
+- Interface BookFormErrors.
+- Navegación con Stack Navigator.
+- Tipado de pantallas con NativeStackScreenProps.
+- Formulario controlado con useState.
+- Validaciones separadas en archivo utilitario.
+- Persistencia local con Realm DB.
+- Schema Book definido para Realm.
+- Configuración centralizada de Realm.
+- Repositorio para separar la lógica de base de datos.
+- Operación de creación de libros.
+- Operación de lectura de libros.
+- Uso de useFocusEffect para recargar la lista al volver del formulario.
+- Búsqueda en memoria con filter().
+- Renderizado de tarjetas con map().
+- Manejo de errores con try/catch/finally.
+- Estilos centralizados en appStyles.ts.
+- Uso de react-native-safe-area-context.
+- Uso de react-native-get-random-values para compatibilidad con Realm.BSON.ObjectId.
+- Sin uso de any.
+
+MODELO DE DATOS
+
+Interface principal:
+
+export interface Book {
+  id: string;
+  title: string;
+  author: string;
+  year: number;
+  genre: string;
+  createdAt: Date;
+}
+
+Interface utilizada para el formulario:
+
+export interface NewBook {
+  title: string;
+  author: string;
+  year: string;
+  genre: string;
+}
+
+Interface utilizada para errores de validación:
+
+export interface BookFormErrors {
+  title?: string;
+  author?: string;
+  year?: string;
+  genre?: string;
+}
+
+SCHEMA DE REALM DB
+
+export class BookRealm extends Realm.Object<BookRealm> {
+  id!: string;
+  title!: string;
+  author!: string;
+  year!: number;
+  genre!: string;
+  createdAt!: Date;
+
+  static schema: Realm.ObjectSchema = {
+    name: 'Book',
+    primaryKey: 'id',
+    properties: {
+      id: 'string',
+      title: 'string',
+      author: 'string',
+      year: 'int',
+      genre: 'string',
+      createdAt: 'date',
+    },
+  };
+}
+
+INSTRUCCIONES DE INSTALACIÓN Y EJECUCIÓN
+
+1. Clonar el repositorio:
+
+git clone https://github.com/Parterdev/04_booklist.git
+
+2. Ingresar al proyecto:
+
+cd 04_booklist
+
+3. Instalar dependencias:
+
+npm install
+
+4. Ejecutar Metro:
+
+npm run start
+
+5. Ejecutar en Android:
+
+npm run android
+
+6. Ejecutar en iOS:
+
+cd ios
+pod install
+cd ..
+npm run ios
+
+
+NOTA TÉCNICA
+
+Durante el desarrollo se reemplazó SQLite por Realm DB. Esta decisión mantiene el objetivo principal de la actividad: persistencia local, creación de registros, lectura de datos y búsqueda en tiempo real.
+
+Realm DB trabaja con objetos persistidos y transacciones, por lo que no se construyen sentencias SQL manuales ni se concatenan consultas vulnerables a inyección SQL.
